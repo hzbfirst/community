@@ -1,8 +1,12 @@
 package com.nowcoder.community.util;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.util.DigestUtils;
 
+import java.util.Map;
 import java.util.UUID;
 
 public class CommunityUtil {
@@ -22,4 +26,24 @@ public class CommunityUtil {
         return DigestUtils.md5DigestAsHex(key.getBytes());
     }
 
+
+    public static String getJSONString(int code, String msg, Map<String, Object> map) throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("code", code);
+        json.put("msg", msg);
+        if(map != null){
+            for(String key : map.keySet()){
+                json.put(key, map.get(key));
+            }
+        }
+        return json.toString();
+    }
+
+    public static String getJSONString(int code, String msg) throws JSONException {
+        return getJSONString(code, msg, null);
+    }
+
+    public static String getJSONString(int code) throws JSONException {
+        return getJSONString(code, null, null);
+    }
 }
