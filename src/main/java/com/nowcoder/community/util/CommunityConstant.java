@@ -62,5 +62,9 @@ public interface CommunityConstant {
      */
     int SYSTEM_USER_ID = 1;
 
+    /**
+     * 发帖事件
+     */
+    String TOPIC_PUBLISH ="publish";
 
 }
