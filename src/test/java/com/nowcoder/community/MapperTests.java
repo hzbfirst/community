@@ -48,6 +48,8 @@ public class MapperTests {
         user.setHeaderUrl("http://www.nowcoder.com/101.png");
         user.setCreateTime(new Date());
 
+
+
         int rows = userMapper.insertUser(user);
         System.out.println(rows);
         System.out.println(user.getId());
