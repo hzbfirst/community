@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -174,7 +175,7 @@ public class UserController  implements CommunityConstant {
 
     // 我的帖子
     @RequestMapping(path = "/mypost/{userId}", method = RequestMethod.GET)
-    public String getMyPost(@PathVariable("userId") int userId, Page page, Model model) {
+    public String getMyPost(@PathVariable("userId") int userId, Page page, Model model,@RequestParam(name = "orderMode", defaultValue = "0") int orderMode) {
         User user = userService.findUserById(userId);
         if (user == null) {
             throw new RuntimeException("该用户不存在！");
@@ -187,7 +188,7 @@ public class UserController  implements CommunityConstant {
 
         // 帖子列表
         List<DiscussPost> discussList = discussPostService
-                .findDiscussPosts(userId, page.getOffset(), page.getLimit());
+                .findDiscussPosts(userId, page.getOffset(), page.getLimit(),orderMode);
         List<Map<String, Object>> discussVOList = new ArrayList<>();
         if (discussList != null) {
             for (DiscussPost post : discussList) {
