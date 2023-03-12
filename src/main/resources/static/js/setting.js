@@ -16,3 +16,4 @@ function check_data() {
 function clear_error() {
     $(this).removeClass("is-invalid");
 }
+
