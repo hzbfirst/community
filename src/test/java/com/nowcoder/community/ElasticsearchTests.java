@@ -63,6 +63,7 @@ public class ElasticsearchTests {
         discussRepository.saveAll(discussMapper.selectDiscussPosts(132, 0, 100,0));
         discussRepository.saveAll(discussMapper.selectDiscussPosts(133, 0, 100,0));
         discussRepository.saveAll(discussMapper.selectDiscussPosts(134, 0, 100,0));
+
     }
 
     @Test
